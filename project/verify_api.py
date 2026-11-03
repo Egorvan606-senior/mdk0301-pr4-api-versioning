@@ -47,15 +47,25 @@ try:
     status1, v1, headers1 = request("/api/v1/products")
     status2, v2, headers2 = request("/api/v2/products")
     assert status1 == status2 == 200
-    assert len(v1) == len(v2) >= 2
+    assert len(v1) == len(v2) == 3
     base_fields = {"id", "title", "price"}
     added_fields = {"currency", "inStock", "category", "apiVersionInfo"}
     assert all(set(p) == base_fields for p in v1)
     assert all(set(p) == base_fields | added_fields for p in v2)
     assert all({k: p[k] for k in base_fields} == v1[i] for i, p in enumerate(v2))
+    assert v1 == [
+        {"id": 1, "title": "Ноутбук Lenovo IdeaPad 5", "price": 64990},
+        {"id": 2, "title": "Смартфон Samsung Galaxy A55", "price": 32490},
+        {"id": 3, "title": "Беспроводные наушники Sony WH-1000XM5", "price": 29990},
+    ]
+    assert [(p["currency"], p["inStock"], p["category"]) for p in v2] == [
+        ("RUB", True, "Ноутбуки"),
+        ("RUB", False, "Смартфоны"),
+        ("RUB", True, "Аудио"),
+    ]
     assert "1.0" in headers1.get("api-supported-versions", "")
     assert "2.0" in headers2.get("api-supported-versions", "")
-    print("PASS: v1 and v2 return HTTP 200")
+    print("PASS: v1 and v2 return HTTP 200; all 3 products match the original Swagger screenshots")
     print("PASS: v1 contract has 3 fields, v2 adds 4 fields")
     print("PASS: v1 fields and values are unchanged in v2")
     print("PASS: supported API versions are reported")

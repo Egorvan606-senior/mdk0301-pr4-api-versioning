@@ -1,0 +1,21 @@
+@host = http://localhost:5180
+
+### Все товары — контракт v1
+GET {{host}}/api/v1/products
+Accept: application/json
+
+### Все товары — расширенный контракт v2
+GET {{host}}/api/v2/products
+Accept: application/json
+
+### Товар с id 2 — v1
+GET {{host}}/api/v1/products/2
+Accept: application/json
+
+### Товар с id 2 — v2
+GET {{host}}/api/v2/products/2
+Accept: application/json
+
+### Отсутствующий товар — HTTP 404
+GET {{host}}/api/v2/products/999999
+Accept: application/json
