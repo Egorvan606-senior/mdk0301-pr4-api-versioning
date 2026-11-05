@@ -11,7 +11,7 @@
 
 ## Быстрый запуск
 
-1. На GitHub нажмите **Code → Download ZIP** и распакуйте репозиторий. Установите **.NET 10 SDK**. В Visual Studio откройте [`project/ApiVersioningLab.Ivanov.slnx`](project/ApiVersioningLab.Ivanov.slnx).
+1. На GitHub нажмите **Code → Download ZIP** и распакуйте репозиторий. Установите **.NET 10 SDK**. В Visual Studio откройте [`project/ApiVersioningLab.Ivanov.slnx`](project/ApiVersioningLab.Ivanov.slnx) и нажмите **Ctrl+F5**.
 2. В PowerShell перейдите в папку `project` и выполните:
 
    ```powershell
